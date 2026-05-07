@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Brown Bean Cafe</title>
+
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    body{
+      background:#2b1d16;
+      color:#f5e6cc;
+    }
+
+    /* HEADER */
+
+    .header{
+      background:#3a261c;
+      padding:25px;
+      text-align:center;
+      border-bottom:3px solid #d6b98c;
+      box-shadow:0 0 20px rgba(0,0,0,0.5);
+    }
+
+    .header h1{
+      font-size:48px;
+      font-weight:900;
+      letter-spacing:4px;
+      color:#f8e8cf;
+      text-transform:uppercase;
+    }
+
+    .header p{
+      margin-top:10px;
+      color:#d6b98c;
+      font-size:18px;
+    }
+
+    /* TABLE INFO */
+
+    .table-box{
+      width:90%;
+      max-width:500px;
+      margin:30px auto;
+      background:#3d2a20;
+      padding:20px;
+      border-radius:20px;
+      text-align:center;
+      border:2px solid #d6b98c;
+    }
+
+    .table-box input{
+      width:100%;
+      padding:15px;
+      margin-top:15px;
+      border:none;
+      border-radius:12px;
+      font-size:18px;
+      background:#f5e6cc;
+      color:#2b1d16;
+      font-weight:bold;
+    }
+
+    /* MENU */
+
+    .menu-title{
+      text-align:center;
+      margin-top:20px;
+      font-size:40px;
+      color:#f5e6cc;
+      letter-spacing:3px;
+      font-weight:900;
+    }
+
+    .menu-container{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+      gap:25px;
+      padding:40px;
+    }
+
+    .card{
+      background:#3a261c;
+      border-radius:20px;
+      overflow:hidden;
+      border:2px solid #d6b98c;
+      transition:0.3s;
+      box-shadow:0 8px 20px rgba(0,0,0,0.4);
+    }
+
+    .card:hover{
+      transform:translateY(-8px);
+    }
+
+    .card img{
+      width:100%;
+      height:220px;
+      object-fit:cover;
+    }
+
+    .card-content{
+      padding:20px;
+    }
+
+    .card h2{
+      font-size:28px;
+      margin-bottom:10px;
+      color:#fff0d5;
+    }
+
+    .price{
+      font-size:22px;
+      color:#d6b98c;
+      margin-bottom:15px;
+      font-weight:bold;
+    }
+
+    .qty-box{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      margin-bottom:15px;
+    }
+
+    .qty-box input{
+      width:80px;
+      padding:10px;
+      border:none;
+      border-radius:10px;
+      background:#f5e6cc;
+      font-size:18px;
+      font-weight:bold;
+      color:#2b1d16;
+    }
+
+    .btn{
+      width:100%;
+      padding:14px;
+      border:none;
+      border-radius:12px;
+      background:#d6b98c;
+      color:#2b1d16;
+      font-size:18px;
+      font-weight:bold;
+      cursor:pointer;
+      transition:0.3s;
+    }
+
+    .btn:hover{
+      background:#f5e6cc;
+    }
+
+    /* ORDER PANEL */
+
+    .admin-panel{
+      background:#1a120d;
+      padding:30px;
+      margin-top:50px;
+      border-top:4px solid #d6b98c;
+      display:none;
+    }
+
+    .admin-panel h2{
+      text-align:center;
+      font-size:40px;
+      margin-bottom:30px;
+      color:#f5e6cc;
+    }
+
+    .order-list{
+      display:flex;
+      flex-direction:column;
+      gap:20px;
+    }
+
+    .order-item{
+      background:#3a261c;
+      padding:20px;
+      border-radius:15px;
+      border:2px solid #d6b98c;
+    }
+
+    .footer{
+      text-align:center;
+      padding:30px;
+      color:#d6b98c;
+      font-size:18px;
+    }
+
+    .top-buttons{
+      display:flex;
+      justify-content:center;
+      gap:20px;
+      margin-top:20px;
+    }
+
+    .admin-btn{
+      padding:12px 20px;
+      border:none;
+      border-radius:10px;
+      background:#f5e6cc;
+      color:#2b1d16;
+      font-weight:bold;
+      cursor:pointer;
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <div class="header">
+    <h1>Brown Bean Cafe</h1>
+    <p>Classic Old School Cafe Ordering System</p>
+  </div>
+
+  <div class="table-box">
+    <h2>Enter Table Number</h2>
+    <input type="number" id="tableNumber" placeholder="Example: 5">
+  </div>
+
+  <h1 class="menu-title">OUR MENU</h1>
+
+  <div class="menu-container">
+
+    <!-- ITEM 1 -->
+
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93" alt="Coffee">
+
+      <div class="card-content">
+        <h2>Cappuccino</h2>
+        <div class="price">₹180</div>
+
+        <div class="qty-box">
+          <label>Qty:</label>
+          <input type="number" id="qty1" min="1" value="1">
+        </div>
+
+        <button class="btn" onclick="addOrder('Cappuccino',180,'qty1')">
+          Add To Order
+        </button>
+      </div>
+    </div>
+
+    <!-- ITEM 2 -->
+
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1550547660-d9450f859349" alt="Burger">
+
+      <div class="card-content">
+        <h2>Cheese Burger</h2>
+        <div class="price">₹250</div>
+
+        <div class="qty-box">
+          <label>Qty:</label>
+          <input type="number" id="qty2" min="1" value="1">
+        </div>
+
+        <button class="btn" onclick="addOrder('Cheese Burger',250,'qty2')">
+          Add To Order
+        </button>
+      </div>
+    </div>
+
+    <!-- ITEM 3 -->
+
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591" alt="Pizza">
+
+      <div class="card-content">
+        <h2>Farm Pizza</h2>
+        <div class="price">₹420</div>
+
+        <div class="qty-box">
+          <label>Qty:</label>
+          <input type="number" id="qty3" min="1" value="1">
+        </div>
+
+        <button class="btn" onclick="addOrder('Farm Pizza',420,'qty3')">
+          Add To Order
+        </button>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="top-buttons">
+    <button class="admin-btn" onclick="showAdmin()">
+      Open Cafe Admin Panel
+    </button>
+  </div>
+
+  <!-- ADMIN PANEL -->
+
+  <div class="admin-panel" id="adminPanel">
+
+    <h2>Live Customer Orders</h2>
+
+    <div class="order-list" id="orderList"></div>
+
+  </div>
+
+  <div class="footer">
+    Made For Cafe Ordering System
+  </div>
+
+  <script>
+
+    let orders = [];
+
+    function addOrder(item, price, qtyId){
+
+      let table = document.getElementById("tableNumber").value;
+
+      if(table == ""){
+        alert("Please enter table number");
+        return;
+      }
+
+      let quantity = document.getElementById(qtyId).value;
+
+      let total = price * quantity;
+
+      let order = {
+        table: table,
+        item: item,
+        quantity: quantity,
+        total: total
+      };
+
+      orders.push(order);
+
+      alert(
+        quantity + " " + item + " added for Table " + table
+      );
+
+      updateAdminPanel();
+    }
+
+    function updateAdminPanel(){
+
+      let orderList = document.getElementById("orderList");
+
+      orderList.innerHTML = "";
+
+      orders.forEach((order,index)=>{
+
+        orderList.innerHTML += `
+          <div class="order-item">
+            <h3>Table Number: ${order.table}</h3>
+            <p><strong>Item:</strong> ${order.item}</p>
+            <p><strong>Quantity:</strong> ${order.quantity}</p>
+            <p><strong>Total:</strong> ₹${order.total}</p>
+          </div>
+        `;
+
+      });
+
+    }
+
+    function showAdmin(){
+
+      let password = prompt("Enter Admin Password");
+
+      if(password === "admin123"){
+        document.getElementById("adminPanel").style.display = "block";
+      }
+      else{
+        alert("Wrong Password");
+      }
+
+    }
+
+  </script>
+
+</body>
+</html>
